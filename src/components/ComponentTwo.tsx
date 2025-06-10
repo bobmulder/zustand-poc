@@ -1,15 +1,17 @@
 
 import React, { useState } from 'react';
+import useStore from "../hooks/useStore";
 
 interface ComponentOneProps {
   title?: string;
 }
 
 const ComponentOne: React.FC<ComponentOneProps> = ({ title = 'Default Title' }) => {
-  const [count, setCount] = useState(0);
+  const count = useStore((state) => state.count);
+  const increment = useStore((state) => state.increment);
 
   const handleIncrement = () => {
-    setCount(prevCount => prevCount + 1);
+    increment();
   };
 
   return (
